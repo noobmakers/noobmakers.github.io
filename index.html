@@ -1,8 +1,60 @@
+
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Paghụgjghjgjghjghges.</p>
-<h2>JHgfyugerfyugwef</h2>
-</body>
+	<head>
+		<script type="text/javascript" src="qrcode.min.js"></script>
+	</head>
+	
+	<body align="center">
+		<h1>Trường THCS Đinh Xá</h1>
+		<h1>Khai báo Y Tế</h1>
+		<table align="center">
+			<tr>
+				<td><h3 align="left"> Họ và tên: </h3></td>
+				<td><input align="center" type="text" id="name" style="font-weight:bold; color:blue; font-size:16pt; text-align:center;" size="30"></td>
+			</tr>
+			<tr>
+				<td><h3 align="left"> Địa chỉ: </h3></td>
+				<td><input type="text" id="diachi" style=" font-weight:bold; color:blue; font-size: 16pt; text-align:center;" size="30"></td>
+			</tr>
+			<tr>
+				<td><h3 align="left"> Điện thoại: </h3></td>
+				<td><input type="text" id="sdt" style=" font-weight:bold; color:blue; font-size: 16pt; text-align:center;" size="30"></td>
+			</tr>
+		</table>
+		
+		<button id="Button" style="background-color:lightgreen; color:blue; font-weight:bold; font-size:16pt;" onclick="createQR()"> Khai báo </button>
+		<h2 id="status" style="color:red;"></h2>
+		<p><div id="id_qrcode" align="center"></div></p>
+		
+		<script type="text/javascript">
+			function createQR()
+			{
+				var name = document.getElementById("name").value;
+				var diachi = document.getElementById("diachi").value;
+				var sdt = document.getElementById("sdt").value;
+				
+				if (name=="" || diachi=="" || sdt=="")
+				{
+					document.getElementById("status").innerHTML = "Vui lòng nhập đúng!!!";
+				}
+				else
+				{
+					var qrcode = new QRCode("id_qrcode", {
+						text:"Khach - " + name + " - " + diachi + " - " + sdt,
+						width:250,
+						height:250,
+						colorDark:"#000000",
+						colorLight:"#ffffff",
+						correctLevel:QRCode.CorrectLevel.H
+					});
+					document.getElementById("Button").disabled = true;
+					document.getElementById("name").disabled = true;
+					document.getElementById("diachi").disabled = true;
+					document.getElementById("sdt").disabled = true;
+					document.getElementById("status").innerHTML = "Cảm ơn Quý Khách! Quý khách sử dụng mã QR này để mở cửa.";
+				}
+			}
+		</script>
+	</body>
 </html>
